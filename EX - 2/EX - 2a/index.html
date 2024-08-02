@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Map</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            display: block;
+            height: 100vh;
+            margin: 1px auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="./india.png" alt="India Map" class="india-map" usemap="#map">
+    <map name="map">
+        <area shape="rect" coords="200,730,290, 600" href="./tn.html" alt="Tamil Nadu">
+        <area shape="circle" coords="200, 640, 50" href="./kl.html" alt="Kerala">
+        <area shape="circle" coords="235, 500, 50" href="./ap.html" alt="Andhra Pradesh">
+        <area shape="rect" coords="150, 500, 225,555" href="./kr.html" alt="Karnataka">
+        <area shape="circle" coords="110, 500, 35" href="./goa.html" alt="Goa">
+        <area shape="rect" coords="110, 515, 230, 395" href="./mh.html" alt="Maharastra">
+        <area shape="circle" coords="90, 355, 50" href="./gu.html" alt="Gujarat">
+        <area shape="circle" coords="305, 350, 30" href="./ch.html" alt="Madhya Pradesh">
+        <area shape="circle" coords="350,400, 50" href="./or.html" alt="Orrisa">
+        <area shape="circle" coords="420,320, 30" href="./wb.html" alt="Orrisa">
+        <area shape="circle" coords="380,320, 30" href="./jh.html" alt="Jharkhand">
+        <area shape="circle" coords="380,320, 30" href="./rj.html" alt="Rajasthan">
+        <area shape="rect" coords="40,330, 165, 200" href="./rj.html" alt="Rajasthan">
+        <area shape="rect" coords="210,310, 300, 220" href="./up.html" alt="Uttar Pradesh">
+        <area shape="circle" coords="380,280,30" href="./bh.html" alt="Bihar">
+        <area shape="circle" coords="430,220,10" href="./sh.html" alt="Sikkim">
+        <area shape="circle" coords="495,260,10" href="./mg.html" alt="Meghalaya">
+    </map>
+</body>
+</html>
