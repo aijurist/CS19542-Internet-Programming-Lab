@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            width: 320px;
+            justify-content: center;
+            margin: 10px auto;
+            height: 100%;
+        }
+
+        .form-container div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            align-items: center;
+        }
+
+        input, select {
+            height: 30px;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <form class="form-container" id="my-form">
+        <div>
+            <label for="regNo">Reg. No</label>
+            <input name="regno" placeholder="Enter your Register No." type="number" class="text-box" id="regNo" required>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input name="name" placeholder="Enter your name" type="text" id="name" class="text-box" required>
+        </div>
+        <div>
+            <label for="year">Year</label>
+            <select name="year" id="year" required>
+                <option value="def" selected disabled>Select one Of the following</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+        </div>
+        <div>
+            <label for="semester">Semester</label>
+            <select name="semester" id="semester">
+                <option value="def" selected disabled>Select one Of the following</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+        <div>
+            <label for="acad-year">Academic Year</label>
+            <select name="academicYear" id="acad-year">
+                <option value="def" selected disabled>Select one Of the following</option>
+                <option value="2021-2022">2021-2022</option>
+                <option value="2022-2023">2022-2023</option>
+                <option value="2023-2024">2023-2024</option>
+            </select>
+        </div>
+        <div class="subject-container">
+            <label for="">Subject Code</label>
+            <input type="text" class="subject" placeholder="Subject Code" name="subjectCode" required>
+        </div>
+        <div>
+            <label for="subjectName">Subject Name</label>
+            <input type="text" placeholder="Subject Name" required name="subjectName">
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" placeholder="Age" required>
+        </div>
+        <div>
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender">
+                <option value="def" selected disabled>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <button id="submit">
+            Submit
+        </button>
+        <button type="reset">Clear Entry</button>
+    </form>
+    <script>
+        const myForm = document.querySelector('#my-form');
+        const submitButton = document.getElementById('submit');
+
+        submitButton.onclick = (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(myForm);
+            let isValid = true;
+
+            for (const [name, value] of formData.entries()) {
+                switch (name) {
+                    case 'regno':
+                        if(value.length == 9 || value.length == 13)
+                            break;
+                        alert('Registration number is Invalid');
+                        isValid = false;
+                        break;
+                    case 'name':
+                        if (!/^[a-zA-Z\s]+$/.test(value)) {
+                            alert('Name should contain only letters and spaces.');
+                            isValid = false;
+                        }
+                        break;
+                    case 'year':
+                    case 'semester':
+                    case 'academicYear':
+                    case 'gender':
+                        if (value === 'def') {
+                            alert('Please select a valid option for ' + name + '.');
+                            isValid = false;
+                        }
+                        break;
+                    case 'subjectCode':
+                        if(!/[A-Z][A-Z][0-9][0-9][0-9][0-9][0-9]/.test(value)){
+                            alert('Subject code should of format: CS19542');
+                            isValid = false;
+                        }
+                        break;
+                    case 'subjectName':
+                        if(!/^[a-zA-Z\s]+$/.test(value)) {
+                            alert('Subject Name can contain only characters!');
+                            isValid = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!');
+                for(const [name, value] of formData.entries())
+                    console.log(name + ' --> ' + value);
+            }
+        }
+    </script>
+</body>
+</html>
